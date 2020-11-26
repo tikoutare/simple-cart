@@ -1,0 +1,12 @@
+{
+  "name": "simple-cart/cart",
+  "require": {
+    "php": "^7.2",
+    "monolog/monolog": "1.0.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "SimpleCart\\": "src/"
+    }
+  }
+}
