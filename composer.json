@@ -2,6 +2,12 @@
   "name": "simple-cart/cart",
   "description": "A simple cart",
   "license": "MIT",
+  "authors": [
+    {
+      "name": "Abdel",
+      "email": "abdel@mail.com"
+    }
+  ],
   "require": {
     "php": "^7.2",
     "monolog/monolog": "1.0.*"
