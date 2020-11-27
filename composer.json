@@ -2,6 +2,8 @@
   "name": "simple-cart/cart",
   "description": "A simple cart",
   "license": "MIT",
+  "type": "library",
+  "homepage": "https://github.com/tikoutare/simple-cart",
   "authors": [
     {
       "name": "Abdel",
@@ -10,7 +12,7 @@
   ],
   "require": {
     "php": "^7.2",
-    "monolog/monolog": "1.0.*"
+    "monolog/monolog": "^2.1"
   },
   "autoload": {
     "psr-4": {
