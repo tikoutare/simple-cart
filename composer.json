@@ -1,5 +1,7 @@
 {
   "name": "simple-cart/cart",
+  "description": "A simple cart",
+  "license": "MIT",
   "require": {
     "php": "^7.2",
     "monolog/monolog": "1.0.*"
