@@ -4,20 +4,23 @@ namespace SimpleCart;
 
 class Cart implements \Countable
 {
-    private $products;
+    private $items;
 
     /**
      * Cart constructor.
-     * @param $products
+     * @param $items
      */
-    public function __construct(array $products = [])
+    public function __construct(array $items = [])
     {
-        $this->products = $products;
+        $this->items = $items;
     }
 
-
+    /**
+     * return the amount of items in it
+     * @return int
+     */
     public function count()
     {
-        return count($this->products);
+        return count($this->items);
     }
 }
