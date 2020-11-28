@@ -2,7 +2,7 @@
 
 namespace SimpleCart;
 
-class Cart implements \Countable
+class Cart implements \Countable, \ArrayAccess
 {
     private $items;
 
@@ -29,12 +29,13 @@ class Cart implements \Countable
      * add a new item to the cart
      *
      * @param object $item
+     * @param int $quantity
      * @return $this
      */
-    public function addItem(object $item): self
+    public function addItem(object $item, int $quantity = 1): self
     {
-        $id = spl_object_hash($item);
-        $this->items[$id] = $item;
+        $cartItem = new CartItem($item, $quantity);
+        $this->items[] = $cartItem;
 
         return $this;
     }
@@ -53,8 +54,25 @@ class Cart implements \Countable
         return $this;
     }
 
-    private function getItemId(object $item)
+    public function offsetExists($offset)
     {
-        return spl_object_hash($item);
+        return isset($this->items[$offset]);
+    }
+
+    public function offsetGet($offset)
+    {
+        return $this->items[$offset];
+    }
+
+    public function offsetSet($offset, $value)
+    {
+        $this->items[$offset] = $value;
+
+        return $this;
+    }
+
+    public function offsetUnset($offset)
+    {
+        unset($this->items[$offset]);
     }
 }
