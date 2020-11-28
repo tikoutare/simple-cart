@@ -4,7 +4,7 @@ namespace Tests;
 
 use SimpleCart\Cart;
 use PHPUnit\Framework\TestCase;
-use SimpleCart\CartItem;
+use SimpleCart\CartProduct;
 use Tests\Fixtures\FakeProduct;
 
 class CartTest extends TestCase
@@ -18,8 +18,18 @@ class CartTest extends TestCase
     public function testAddItem()
     {
         $cart = new Cart();
-        $cart->addItem(new FakeProduct());
+        $cart->addProduct(new FakeProduct(101));
         $this->assertCount(1, $cart);
-        $this->assertInstanceOf(CartItem::class, $cart[0]);
+        $this->assertInstanceOf(CartProduct::class, $cart[0]);
+    }
+
+    public function testRemoveProduct()
+    {
+        $cart = new Cart();
+        $product = new FakeProduct(101);
+        $cart->addProduct($product);
+        $this->assertCount(1, $cart);
+        $cart->removeProduct($product);
+        $this->assertCount(0, $cart);
     }
 }
