@@ -9,19 +9,19 @@ namespace SimpleCart;
  */
 class CartProduct
 {
-    private IdentifiableInterface $product;
+    private object $product;
     private int $quantity;
 
-    public function __construct(IdentifiableInterface $product, int $quantity = 1)
+    public function __construct(object $product, int $quantity = 1)
     {
         $this->product = $product;
         $this->quantity = $quantity;
     }
 
     /**
-     * @return IdentifiableInterface
+     * @return object
      */
-    public function getProduct(): IdentifiableInterface
+    public function getProduct(): object
     {
         return $this->product;
     }
@@ -32,5 +32,13 @@ class CartProduct
     public function getQuantity(): int
     {
         return $this->quantity;
+    }
+
+    /**
+     * @return float|int
+     */
+    public function getAmount()
+    {
+        return $this->product->getPrice() * $this->getQuantity();
     }
 }
