@@ -28,11 +28,11 @@ class Cart implements \Countable, \ArrayAccess
     /**
      * add a new item to the cart
      *
-     * @param IdentifiableInterface $product
+     * @param object $product
      * @param int $quantity
      * @return $this
      */
-    public function addProduct(IdentifiableInterface $product, int $quantity = 1): self
+    public function addProduct(object $product, int $quantity = 1): self
     {
         $cartProduct = new CartProduct($product, $quantity);
         $this->products[] = $cartProduct;
@@ -43,10 +43,10 @@ class Cart implements \Countable, \ArrayAccess
     /**
      * Remove an existing item from the cart
      *
-     * @param IdentifiableInterface $product
+     * @param object $product
      * @return $this
      */
-    public function removeProduct(IdentifiableInterface $product): self
+    public function removeProduct(object $product): self
     {
         $this->products = array_filter($this->products, function (CartProduct $cartProduct) use ($product) {
            return $cartProduct->getProduct()->getId() !== $product->getId();
@@ -75,5 +75,15 @@ class Cart implements \Countable, \ArrayAccess
     public function offsetUnset($offset)
     {
         unset($this->products[$offset]);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAmount()
+    {
+        return array_reduce($this->products, function ($amount, CartProduct $cartProduct) {
+            return $amount + $cartProduct->getAmount();
+        }, 0);
     }
 }

@@ -2,23 +2,29 @@
 
 namespace Tests\Fixtures;
 
-use SimpleCart\IdentifiableInterface;
-
-class FakeProduct implements IdentifiableInterface
+class FakeProduct
 {
-    private $id;
+    private int $id;
+    private int $price;
 
     /**
      * FakeProduct constructor.
-     * @param $id
+     * @param int $id
+     * @param int $price
      */
-    public function __construct($id)
+    public function __construct(int $id, int $price)
     {
         $this->id = $id;
+        $this->price = $price;
     }
 
     public function getId()
     {
         return $this->id;
+    }
+
+    public function getPrice()
+    {
+        return $this->price;
     }
 }
